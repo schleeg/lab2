@@ -13,12 +13,11 @@ public class Task1 {
      * @return List of Characters. Should not return null.
      */
     public List<Character> listAllCharacters(String stringToList){
-        if (stringToList == null){
-            return null;
-        }
         List<Character> characterList = new ArrayList<>();
-        for(int i=1; i<stringToList.toCharArray().length;i++){
-            characterList.add(stringToList.toCharArray()[i]);
+        if (stringToList !=null){
+            for(char c: stringToList.toCharArray()) {
+                characterList.add(c);
+            }
         }
         return characterList;
     }
@@ -30,7 +29,9 @@ public class Task1 {
      * @return String with base surrounded by two Strings. Should not return null.
      */
     public String concatenateToFrontAndEnd(String baseString, String concat){
-        return baseString+concat;
+        if (baseString == null) baseString = "";
+        if (concat== null) concat = "";
+        return concat + baseString + concat;
     }
 
     /**
@@ -40,7 +41,7 @@ public class Task1 {
      * @throws NotADogException When someone is silly and doesn't put in a dog.
      */
     public void throwExceptionIfNotADog(String betterBeDog) throws NotADogException {
-        if (!betterBeDog.equals("dog")) {
+        if (betterBeDog == null || !betterBeDog.equalsIgnoreCase("dog")) {
             throw new NotADogException("This isn't a dog.");
         }
     }
@@ -53,9 +54,11 @@ public class Task1 {
      */
     public List<String> returnsTheSameStringTenTimes(String baseString){
         List<String> arrayList = new ArrayList<>();
-        while (arrayList.size()+1 != 10){
-            arrayList.add(baseString);
+        if (baseString == null) return arrayList; {
+            for (int i=0; i < 10; i++) {
+                arrayList.add(baseString);
+            }
         }
-        return new ArrayList<>();
+        return arrayList;
     }
 }
